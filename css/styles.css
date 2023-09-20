@@ -4,6 +4,10 @@ header {
   width: 100%;
 }
 
+.container {
+  display: flex;
+}
+
 body {
   background-color: rgb(240, 240, 240);
 }
@@ -18,9 +22,12 @@ img {
   padding: 0;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
+.column-full {
+  margin-top: 20px;
+}
+
+.row {
+  justify-content: right;
 }
 
 input,
@@ -41,14 +48,6 @@ textarea {
   border-style: solid;
   border-radius: 3px;
   border-width: 1px;
-}
-
-.column-full {
-  margin-top: 20px;
-}
-
-.row {
-  justify-content: right;
 }
 
 button {
