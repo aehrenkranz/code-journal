@@ -1,0 +1,72 @@
+header {
+  background-color: rgb(113, 3, 113);
+  color: white;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+}
+
+body {
+  background-color: rgb(240, 240, 240);
+}
+
+img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.column-half,
+.column-full {
+  padding: 0;
+}
+
+.column-full {
+  margin-top: 20px;
+}
+
+.row {
+  justify-content: right;
+}
+
+input,
+label {
+  margin: 15px 0;
+  width: 100%;
+  height: 30px;
+}
+
+textarea {
+  margin-top: 15px;
+  width: 100%;
+}
+
+input,
+textarea {
+  border-color: rgb(188, 185, 185);
+  border-style: solid;
+  border-radius: 3px;
+  border-width: 1px;
+}
+
+button {
+  background-color: rgb(113, 3, 113);
+  color: white;
+  border-radius: 3px;
+  height: 30px;
+  width: 50px;
+  border: none;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .column-half {
+    padding-right: 20px;
+  }
+
+  .row {
+    margin: 0;
+  }
+}
