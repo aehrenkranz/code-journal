@@ -12,3 +12,8 @@ function addJSON(event) {
   localStorage.setItem('form-submission', JSONdata);
 }
 window.addEventListener('beforeunload', addJSON);
+
+const prevSubmission = localStorage.getItem('form-submission');
+if (prevSubmission !== null) {
+  data = JSON.parse(prevSubmission);
+}
