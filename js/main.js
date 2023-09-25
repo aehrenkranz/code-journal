@@ -25,3 +25,35 @@ function submitForm(event) {
 }
 
 form.addEventListener('submit', submitForm);
+
+function renderEntry(entry) {
+  const listElement = document.createElement('li');
+  const divColumnHalf1 = document.createElement('div');
+  const divColumnHalf2 = document.createElement('div');
+  const img = document.createElement('img');
+  const entryTitle = document.createElement('h3');
+  const entryNotes = document.createElement('p');
+
+  divColumnHalf1.setAttribute('class', 'column-half');
+  divColumnHalf2.setAttribute('class', 'column-half');
+  img.setAttribute('src', entry.url);
+  entryTitle.textContent = entry.title;
+  entryNotes.textContent = entry.notes;
+
+  listElement.appendChild(divColumnHalf1);
+  listElement.appendChild(divColumnHalf2);
+  divColumnHalf1.appendChild(img);
+  divColumnHalf2.appendChild(entryTitle);
+  divColumnHalf2.appendChild(entryNotes);
+  return listElement;
+}
+
+function addEntries(event) {
+  for (let i = 0; i < data.entries.length; i++) {
+    const newEntry = renderEntry(data.entries[i]);
+    const unorderedList = document.querySelector('ul');
+    unorderedList.appendChild(newEntry);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', addEntries);
