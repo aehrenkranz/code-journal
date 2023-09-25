@@ -22,7 +22,7 @@
       </div>
     </header>
     <main class="container">
-      <div data-view="entry-form">
+      <div data-view="entry-form" class="hidden">
         <h2>New Entry</h2>
         <form id="journal">
           <div class="row">
@@ -47,7 +47,29 @@
           </div>
         </form>
       </div>
-      <div data-view="entries" class="hidden"></div>
+      <div data-view="entries">
+        <h2>Entries</h2>
+        <ul>
+          <li>
+            <div class="column-half">
+              <img src="images/placeholder-image-square.jpg" />
+            </div>
+            <div class="column-half">
+              <h3>test</h3>
+              <p>test</p>
+            </div>
+          </li>
+          <li>
+            <div class="column-half">
+              <img src="images/placeholder-image-square.jpg" />
+            </div>
+            <div class="column-half">
+              <h3>test</h3>
+              <p>test</p>
+            </div>
+          </li>
+        </ul>
+      </div>
     </main>
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
