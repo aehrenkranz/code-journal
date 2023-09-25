@@ -57,3 +57,22 @@ function addEntries(event) {
 }
 
 document.addEventListener('DOMContentLoaded', addEntries);
+
+// eslint-disable-next-line no-unused-vars
+function toggleNoEntries() {
+  const noEntries = document.querySelector('#no-entries');
+  noEntries.classList.toggle('hidden');
+}
+
+function viewSwap(view) {
+  const pageViews = document.querySelectorAll('.view');
+  for (let i = 0; i < pageViews.length; i++) {
+    if (view === pageViews[i].getAttribute('data-view')) {
+      pageViews[i].removeAttribute('class');
+    } else {
+      pageViews[i].className = 'hidden';
+    }
+  }
+  data.view = view;
+}
+viewSwap('entry-form');
