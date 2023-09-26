@@ -4,6 +4,11 @@ header {
   width: 100%;
 }
 
+h3 {
+  display: flex;
+  justify-content: space-between;
+}
+
 header > div > h3 {
   margin-top: 29px;
   margin-left: 10px;
@@ -109,4 +114,8 @@ li {
   .row {
     margin: 0;
   }
+}
+
+i {
+  cursor: pointer;
 }

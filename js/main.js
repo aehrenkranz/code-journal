@@ -54,6 +54,7 @@ function submitForm(event) {
     data.editing = null;
     form.reset();
   }
+  location.reload();
 }
 
 form.addEventListener('submit', submitForm);
@@ -121,12 +122,10 @@ const entryFormButton = document.getElementById('entry-form-button');
 
 entriesButton.addEventListener('click', function entriesView(event) {
   viewSwap('entries');
-  location.reload();
 });
 
 entryFormButton.addEventListener('click', function entryFormView(event) {
   viewSwap('entry-form');
-  location.reload();
 });
 
 const ul = document.querySelector('ul');
