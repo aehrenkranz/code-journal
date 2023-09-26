@@ -22,6 +22,12 @@ function submitForm(event) {
   data.entries.unshift(formEntries);
   imgElement.src = '../images/placeholder-image-square.jpg';
   form.reset();
+  const unorderedList = document.querySelector('ul');
+  unorderedList.appendChild(renderEntry(formEntries));
+  viewSwap('entries');
+  if (localStorage.getItem('form-submission') === null) {
+    toggleNoEntries();
+  }
 }
 
 form.addEventListener('submit', submitForm);
@@ -54,6 +60,10 @@ function addEntries(event) {
     const unorderedList = document.querySelector('ul');
     unorderedList.appendChild(newEntry);
   }
+  viewSwap(data.view);
+  if (localStorage.getItem('form-submission') === null) {
+    toggleNoEntries();
+  }
 }
 
 document.addEventListener('DOMContentLoaded', addEntries);
@@ -68,11 +78,21 @@ function viewSwap(view) {
   const pageViews = document.querySelectorAll('.view');
   for (let i = 0; i < pageViews.length; i++) {
     if (view === pageViews[i].getAttribute('data-view')) {
-      pageViews[i].removeAttribute('class');
+      pageViews[i].className = 'view';
     } else {
-      pageViews[i].className = 'hidden';
+      pageViews[i].className = 'view hidden';
     }
   }
   data.view = view;
 }
-viewSwap('entry-form');
+
+const entriesButton = document.querySelector('a');
+const entryFormButton = document.getElementById('entry-form-button');
+
+entriesButton.addEventListener('click', function entriesView(event) {
+  viewSwap('entries');
+});
+
+entryFormButton.addEventListener('click', function entryFormView(event) {
+  viewSwap('entry-form');
+});

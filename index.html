@@ -19,10 +19,11 @@
     <header>
       <div class="container">
         <h1>Code Journal</h1>
+        <h3><a>Entries</a></h3>
       </div>
     </header>
     <main class="container">
-      <div data-view="entry-form" class="view hidden">
+      <div data-view="entry-form" class="view">
         <h2>New Entry</h2>
         <form id="journal">
           <div class="row">
@@ -47,8 +48,12 @@
           </div>
         </form>
       </div>
-      <div data-view="entries" class="view">
-        <h2>Entries</h2>
+      <div data-view="entries" class="view hidden">
+        <div class="entries-row">
+          <h2>Entries</h2>
+          <button type="button" id="entry-form-button">NEW</button>
+        </div>
+
         <h3 id="no-entries" class="hidden">No entries made.....yet</h3>
         <ul></ul>
       </div>
