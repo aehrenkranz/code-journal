@@ -39,11 +39,15 @@ function renderEntry(entry) {
   const img = document.createElement('img');
   const entryTitle = document.createElement('h3');
   const entryNotes = document.createElement('p');
+  const pencilIcon = document.createElement('i');
 
   divColumnHalf1.setAttribute('class', 'column-half');
   divColumnHalf2.setAttribute('class', 'column-half');
+  listElement.setAttribute('data-entry-id', entry.entryId);
+  pencilIcon.className = 'fa-solid fa-pencil';
   img.setAttribute('src', entry.url);
   entryTitle.textContent = entry.title;
+  entryTitle.appendChild(pencilIcon);
   entryNotes.textContent = entry.notes;
 
   listElement.appendChild(divColumnHalf1);
