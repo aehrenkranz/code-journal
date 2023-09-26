@@ -4,8 +4,20 @@ header {
   width: 100%;
 }
 
+header > div > h3 {
+  margin-top: 29px;
+  margin-left: 10px;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .container {
   display: flex;
+  justify-content: space-between;
 }
 
 body {
@@ -28,6 +40,15 @@ img {
 
 .row {
   justify-content: right;
+}
+
+.view {
+  width: 100%;
+}
+
+.entries-row {
+  display: flex;
+  justify-content: space-between;
 }
 
 input,
@@ -55,10 +76,12 @@ button {
   color: white;
   border-radius: 3px;
   height: 30px;
-  width: 50px;
+  font-weight: 500;
+  width: 70px;
   border: none;
   margin-bottom: 10px;
   margin-top: 10px;
+  cursor: pointer;
 }
 
 ul {
