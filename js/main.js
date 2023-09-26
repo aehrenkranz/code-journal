@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 /* eslint-disable no-console */
 const urlInput = document.querySelector('#photo-url');
 const imgElement = document.querySelector('img');
@@ -18,15 +19,40 @@ function submitForm(event) {
     notes: formElements.elements.notes.value,
     entryId: data.nextEntryId,
   };
-  data.nextEntryId++;
-  data.entries.unshift(formEntries);
-  imgElement.src = '../images/placeholder-image-square.jpg';
-  form.reset();
-  const unorderedList = document.querySelector('ul');
-  unorderedList.appendChild(renderEntry(formEntries));
-  viewSwap('entries');
-  if (localStorage.getItem('form-submission') === null) {
-    toggleNoEntries();
+
+  if (data.editing === null) {
+    data.nextEntryId++;
+    data.entries.unshift(formEntries);
+    imgElement.src = '../images/placeholder-image-square.jpg';
+    form.reset();
+    const unorderedList = document.querySelector('ul');
+    unorderedList.appendChild(renderEntry(formEntries));
+    viewSwap('entries');
+    if (localStorage.getItem('form-submission') === null) {
+      toggleNoEntries();
+    }
+  }
+  if (data.editing !== null) {
+    formEntries.entryId = data.editing.entryId;
+    for (let i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].entryId === data.editing.entryId) {
+        data.entries[i] = formEntries;
+      }
+    }
+
+    const currentLiElements = document.querySelectorAll('li');
+    for (let i = 0; i < currentLiElements.length; i++) {
+      if (
+        currentLiElements[i].getAttribute('data-entry-id') ==
+        data.editing.entryId
+      ) {
+        currentLiElements[i] = renderEntry(formEntries);
+      }
+    }
+
+    document.querySelector('h2').textContent = 'New Entry';
+    data.editing = null;
+    form.reset();
   }
 }
 
@@ -95,8 +121,31 @@ const entryFormButton = document.getElementById('entry-form-button');
 
 entriesButton.addEventListener('click', function entriesView(event) {
   viewSwap('entries');
+  location.reload();
 });
 
 entryFormButton.addEventListener('click', function entryFormView(event) {
   viewSwap('entry-form');
+  location.reload();
 });
+
+const ul = document.querySelector('ul');
+function editEntry(event) {
+  if (event.target.tagName === 'I') {
+    viewSwap('entry-form');
+    const eleLi = event.target.closest('li');
+    const dataEntryIndex = eleLi.getAttribute('data-entry-id');
+    for (let i = 0; i < data.entries.length; i++) {
+      // eslint-disable-next-line eqeqeq
+      if (data.entries[i].entryId == dataEntryIndex) {
+        data.editing = data.entries[i];
+        document.querySelector('h2').textContent = 'Edit Entry';
+        formElements.elements.title.value = data.editing.title;
+        formElements.elements['photo-url'].value = data.editing.url;
+        formElements.elements.notes.value = data.editing.notes;
+        return;
+      }
+    }
+  }
+}
+ul.addEventListener('click', editEntry);
