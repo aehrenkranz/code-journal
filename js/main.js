@@ -120,18 +120,20 @@ const entriesButton = document.querySelector('a');
 const entryFormButton = document.getElementById('entry-form-button');
 
 entriesButton.addEventListener('click', function entriesView(event) {
+  document.getElementById('delete-entry').className = 'delete hidden';
   viewSwap('entries');
 });
 
 entryFormButton.addEventListener('click', function entryFormView(event) {
   viewSwap('entry-form');
+  document.querySelector('h2').textContent = 'New Entry';
+  form.reset();
 });
 
 const ul = document.querySelector('ul');
 function editEntry(event) {
   if (event.target.tagName === 'I') {
     viewSwap('entry-form');
-    document.getElementById('delete-entry').className = 'delete';
     const eleLi = event.target.closest('li');
     const dataEntryIndex = eleLi.getAttribute('data-entry-id');
     for (let i = 0; i < data.entries.length; i++) {
@@ -142,9 +144,53 @@ function editEntry(event) {
         formElements.elements.title.value = data.editing.title;
         formElements.elements['photo-url'].value = data.editing.url;
         formElements.elements.notes.value = data.editing.notes;
-        return;
       }
     }
+    deleteButton.className = 'delete';
   }
 }
 ul.addEventListener('click', editEntry);
+
+const deleteButton = document.getElementById('delete-entry');
+const dialog = document.querySelector('dialog');
+const confirmDelete = document.getElementById('confirm-delete');
+const cancelDelete = document.getElementById('cancel-delete');
+deleteButton.addEventListener('click', () => {
+  dialog.showModal();
+});
+cancelDelete.addEventListener('click', () => {
+  dialog.close();
+});
+confirmDelete.addEventListener('click', () => {
+  viewSwap('entries');
+  const currentLiElements = document.querySelectorAll('li');
+  for (let i = 0; i < currentLiElements.length; i++) {
+    if (
+      Number(currentLiElements[i].getAttribute('data-entry-id')) ===
+      data.editing.entryId
+    ) {
+      currentLiElements[i].remove();
+    }
+  }
+  // eslint-disable-next-line array-callback-return
+  const newArr = data.entries.filter((val, i, arr) => {
+    console.log(val, i, arr);
+    if (val.entryId !== data.editing.entryId) {
+      return val;
+    }
+  });
+  data.entries = newArr;
+  // for (let i=0;i<data.entries.length;i++){
+  //   if(data.entries[i].entryId==data.editing.entryId){
+  //     data.entries.splice(i,1)
+
+  //   }
+  // }
+  toggleNoEntries();
+  dialog.close();
+  document.querySelector('h2').textContent = 'New Entry';
+  data.editing = null;
+  document.getElementById('delete-entry').className = 'delete hidden';
+  form.reset();
+  viewSwap('entries');
+});
