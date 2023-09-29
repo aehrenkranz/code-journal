@@ -44,7 +44,7 @@ img {
 }
 
 .row {
-  justify-content: right;
+  justify-content: space-between;
 }
 
 .view {
@@ -76,7 +76,7 @@ textarea {
   border-width: 1px;
 }
 
-button {
+.normal-button {
   background-color: rgb(113, 3, 113);
   color: white;
   border-radius: 3px;
@@ -87,6 +87,12 @@ button {
   margin-bottom: 10px;
   margin-top: 10px;
   cursor: pointer;
+}
+
+.delete {
+  border: 0;
+  text-decoration: underline;
+  color: red;
 }
 
 ul {

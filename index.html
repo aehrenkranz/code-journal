@@ -44,16 +44,20 @@
             </div>
           </div>
           <div class="row">
-            <button type="submit">SAVE</button>
+            <button type="button" class="delete hidden" id="delete-entry">
+              Delete Entry
+            </button>
+            <button type="submit" class="normal-button">SAVE</button>
           </div>
         </form>
       </div>
       <div data-view="entries" class="view hidden">
         <div class="entries-row">
           <h2>Entries</h2>
-          <button type="button" id="entry-form-button">NEW</button>
+          <button type="button" class="normal-button" id="entry-form-button">
+            NEW
+          </button>
         </div>
-
         <h3 id="no-entries" class="">No entries made.....yet</h3>
         <ul></ul>
       </div>

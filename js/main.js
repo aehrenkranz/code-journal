@@ -48,6 +48,7 @@ function submitForm(event) {
 
     document.querySelector('h2').textContent = 'New Entry';
     data.editing = null;
+    document.getElementById('delete-entry').className = 'delete hidden';
     form.reset();
   }
   viewSwap('entries');
@@ -130,6 +131,7 @@ const ul = document.querySelector('ul');
 function editEntry(event) {
   if (event.target.tagName === 'I') {
     viewSwap('entry-form');
+    document.getElementById('delete-entry').className = 'delete';
     const eleLi = event.target.closest('li');
     const dataEntryIndex = eleLi.getAttribute('data-entry-id');
     for (let i = 0; i < data.entries.length; i++) {
