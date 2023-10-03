@@ -39,7 +39,7 @@ function submitForm(event) {
     const currentLiElements = document.querySelectorAll('li');
     for (let i = 0; i < currentLiElements.length; i++) {
       if (
-        currentLiElements[i].getAttribute('data-entry-id') ==
+        Number(currentLiElements[i].getAttribute('data-entry-id')) ===
         data.editing.entryId
       ) {
         currentLiElements[i].replaceWith(renderEntry(formEntries));
@@ -90,6 +90,7 @@ function addEntries(event) {
   }
   toggleNoEntries();
   viewSwap(data.view);
+  form.reset();
 }
 
 document.addEventListener('DOMContentLoaded', addEntries);
@@ -138,11 +139,12 @@ function editEntry(event) {
     const dataEntryIndex = eleLi.getAttribute('data-entry-id');
     for (let i = 0; i < data.entries.length; i++) {
       // eslint-disable-next-line eqeqeq
-      if (data.entries[i].entryId == dataEntryIndex) {
+      if (data.entries[i].entryId === Number(dataEntryIndex)) {
         data.editing = data.entries[i];
         document.querySelector('h2').textContent = 'Edit Entry';
         formElements.elements.title.value = data.editing.title;
         formElements.elements['photo-url'].value = data.editing.url;
+        document.querySelector('img').src = data.editing.url;
         formElements.elements.notes.value = data.editing.notes;
       }
     }
@@ -180,12 +182,6 @@ confirmDelete.addEventListener('click', () => {
     }
   });
   data.entries = newArr;
-  // for (let i=0;i<data.entries.length;i++){
-  //   if(data.entries[i].entryId==data.editing.entryId){
-  //     data.entries.splice(i,1)
-
-  //   }
-  // }
   toggleNoEntries();
   dialog.close();
   document.querySelector('h2').textContent = 'New Entry';
