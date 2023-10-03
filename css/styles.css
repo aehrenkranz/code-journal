@@ -90,9 +90,13 @@ textarea {
 }
 
 .delete {
+  background-color: rgba(255, 255, 255, 0);
   border: 0;
   text-decoration: underline;
   color: red;
+  cursor: pointer;
+  height: 100%;
+  margin-top: 10px;
 }
 
 ul {
@@ -124,4 +128,20 @@ li {
 
 i {
   cursor: pointer;
+}
+
+.dialog-window {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+}
+
+span button {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+dialog {
+  border: 2px solid;
+  border-radius: 3px;
 }
