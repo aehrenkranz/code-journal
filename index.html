@@ -44,19 +44,34 @@
             </div>
           </div>
           <div class="row">
-            <button type="submit">SAVE</button>
+            <button type="button" class="delete hidden" id="delete-entry">
+              Delete Entry
+            </button>
+            <button type="submit" class="normal-button">SAVE</button>
           </div>
         </form>
       </div>
       <div data-view="entries" class="view hidden">
         <div class="entries-row">
           <h2>Entries</h2>
-          <button type="button" id="entry-form-button">NEW</button>
+          <button type="button" class="normal-button" id="entry-form-button">
+            NEW
+          </button>
         </div>
-
         <h3 id="no-entries" class="">No entries made.....yet</h3>
         <ul></ul>
       </div>
+      <dialog>
+        <div class="dialog-window">
+          <p>Are you sure you want to delete this entry?</p>
+          <span
+            ><button class="normal-button" id="confirm-delete">Confirm</button>
+            <button class="normal-button" id="cancel-delete">
+              Cancel
+            </button></span
+          >
+        </div>
+      </dialog>
     </main>
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
